@@ -1,5 +1,7 @@
+import {TVShowAPI} from '../api/tv-show';
 import styled from 'styled-components';
 
+TVShowAPI.fetchPopulars()
 const Home = () => {
   return(
     <MainContainer>
