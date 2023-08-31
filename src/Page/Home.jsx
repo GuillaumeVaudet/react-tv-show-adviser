@@ -1,7 +1,9 @@
 import {useEffect, useState} from 'react';
 import {BACKDROP_BASE_URL} from '../config';
+import Logo from '../components/Logo';
 import {TVShowAPI} from '../api/tv-show';
 import TvShowDetails from '../components/TvShowDetails';
+import logo from '../assets/images/logo.png'
 import styled from 'styled-components';
 
 const Home = () => {
@@ -23,8 +25,10 @@ const Home = () => {
       <Header>
         <div className="row">
           <div className="col-4">
-            <div>Logo</div>
-            <div>Subtitle</div>
+            <Logo
+              image={ logo }
+              title="WhatToWatch"
+              subtitles="Find a show you may like" />
           </div>
           <div className="col-sm-12 col-md-4">
             <SearchBar type="text"/>
