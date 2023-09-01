@@ -3,6 +3,7 @@ import {BACKDROP_BASE_URL} from '../config';
 import Logo from '../components/Logo';
 import {TVShowAPI} from '../api/tv-show';
 import TvShowDetails from '../components/TvShowDetails';
+import TvShowListItem from '../components/TvShowListItem';
 import logo from '../assets/images/logo.png'
 import styled from 'styled-components';
 
@@ -18,6 +19,11 @@ const Home = () => {
   useEffect(() => {
     fetchPopulars()
   }, []);
+
+  function setCurrentTvShowFromRecommendation(tvShow){
+    alert(JSON.stringify(tvShow))
+  }
+
   return(
     <MainContainer style={ {
       background: currentTvShow
@@ -38,7 +44,7 @@ const Home = () => {
       <Details>
         {currentTvShow && <TvShowDetails tvShow={ currentTvShow } />}
       </Details>
-      <Recommendations>Recommendations</Recommendations>
+      {currentTvShow && <TvShowListItem tvShow={ currentTvShow } onClick={ setCurrentTvShowFromRecommendation }/> }
     </MainContainer>
   )
 }

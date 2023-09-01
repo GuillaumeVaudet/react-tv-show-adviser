@@ -2,16 +2,16 @@ import FiveStarsRating from './FiveStarsRating';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const TvShowDetails = ({ tvShow} ) => {
+const TvShowDetails = ({ tvShow } ) => {
   const rating = tvShow.vote_average / 2
   return(
     <div>
-      <Title>{tvShow.name}</Title>
+      <Title>{ tvShow.name }</Title>
       <RatingContainer>
         <FiveStarsRating rating={ rating } />
         <Rating>{rating}</Rating>
       </RatingContainer>
-      <Overview>{tvShow.overview}</Overview>
+      <Overview>{ tvShow.overview }</Overview>
     </div>)
 }
 
