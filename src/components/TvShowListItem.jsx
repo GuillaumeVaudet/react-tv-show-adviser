@@ -23,6 +23,7 @@ TvShowListItem.propTypes = {
 const Container = styled.div`
   cursor: pointer;
   width: 300px;
+  position: relative;
 `
 const Image = styled.img`
   border-radius: 10px;

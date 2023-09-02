@@ -3,22 +3,35 @@ import {BACKDROP_BASE_URL} from '../config';
 import Logo from '../components/Logo';
 import {TVShowAPI} from '../api/tv-show';
 import TvShowDetails from '../components/TvShowDetails';
-import TvShowListItem from '../components/TvShowListItem';
+import TvShowList from '../components/TvShowList';
 import logo from '../assets/images/logo.png'
 import styled from 'styled-components';
 
 const Home = () => {
   const [currentTvShow, setCurrentTvShow] = useState()
+  const [recommendations, setRecommendations] = useState([])
   async function fetchPopulars(){
     const populars = await TVShowAPI.fetchPopulars()
     if(populars.length > 0){
       setCurrentTvShow(populars[0])
     }
   }
+  async function fetchRecommendations(tvShowId){
+    const recommendations = await TVShowAPI.fetchRecommendations(tvShowId)
+    if(recommendations.length > 0){
+      setRecommendations(recommendations.slice(0, 10))
+    }
+  }
 
   useEffect(() => {
     fetchPopulars()
   }, []);
+
+  useEffect(() => {
+    if(currentTvShow){
+      fetchRecommendations(currentTvShow.id)
+    }
+  }, [currentTvShow]);
 
   function setCurrentTvShowFromRecommendation(tvShow){
     alert(JSON.stringify(tvShow))
@@ -44,7 +57,12 @@ const Home = () => {
       <Details>
         {currentTvShow && <TvShowDetails tvShow={ currentTvShow } />}
       </Details>
-      {currentTvShow && <TvShowListItem tvShow={ currentTvShow } onClick={ setCurrentTvShowFromRecommendation }/> }
+      <RecommendedShows>
+        {recommendations && recommendations.length > 0 &&
+          <TvShowList
+            onClickItem={ setCurrentTvShow }
+            tvShowList={ recommendations }/>}
+      </RecommendedShows>
     </MainContainer>
   )
 }
@@ -67,5 +85,7 @@ const Recommendations = styled.div`
 `
 const SearchBar = styled.input`
   width: 100%;
+`
+const RecommendedShows = styled.div`
 `
 export default Home

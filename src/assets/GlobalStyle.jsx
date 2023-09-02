@@ -16,6 +16,13 @@ const GlobalStyle = createGlobalStyle`
   ul{
     padding: 0;
   }
+  
+  ::-webkit-scrollbar{
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb:horizontal{
+    background-color: rgba(0, 0, 0, 0.61);
+    border-radius: 10px;
+  }
 `
-
 export default GlobalStyle
