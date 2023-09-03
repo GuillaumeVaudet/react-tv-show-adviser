@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {BACKDROP_BASE_URL} from '../config';
 import Logo from '../components/Logo';
+import SearchBar from '../components/SearchBar';
 import {TVShowAPI} from '../api/tv-show';
 import TvShowDetails from '../components/TvShowDetails';
 import TvShowList from '../components/TvShowList';
@@ -37,6 +38,12 @@ const Home = () => {
     alert(JSON.stringify(tvShow))
   }
 
+  async function searchTvShow(TvShowName){
+    const searchResponse = await TVShowAPI.fetchByTitle(TvShowName)
+    if(searchResponse.length > 0 ){
+      setCurrentTvShow(searchResponse[0])
+    }
+  }
   return(
     <MainContainer style={ {
       background: currentTvShow
@@ -50,7 +57,7 @@ const Home = () => {
               subtitles="Find a show you may like" />
           </div>
           <div className="col-sm-12 col-md-4">
-            <SearchBar type="text"/>
+            <SearchBar onSubmit={ searchTvShow }/>
           </div>
         </div>
       </Header>
@@ -79,12 +86,6 @@ const Header = styled.div`
 `
 const Details = styled.div`
   flex: 2;
-`
-const Recommendations = styled.div`
-  flex: 1;
-`
-const SearchBar = styled.input`
-  width: 100%;
 `
 const RecommendedShows = styled.div`
 `

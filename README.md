@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+To start application you need to have .env file with:
+'REACT_APP_API_KEY'
+
 ## Available Scripts
 
 In the project directory, you can run:

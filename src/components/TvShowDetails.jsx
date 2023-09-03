@@ -9,7 +9,10 @@ const TvShowDetails = ({ tvShow } ) => {
       <Title>{ tvShow.name }</Title>
       <RatingContainer>
         <FiveStarsRating rating={ rating } />
-        <Rating>{rating}</Rating>
+        <Rating>
+          {rating.toFixed(2)}
+          /5
+        </Rating>
       </RatingContainer>
       <Overview>{ tvShow.overview }</Overview>
     </div>)
